@@ -1,0 +1,1075 @@
+/* 1. Estilos Globales y Header (Efecto Parallax) */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+.header {
+    height: 100vh; /* Altura total del bloque de imagen */
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('imgs/header.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente el texto en el espacio disponible */
+    align-items: flex-start; /* Alinea a la izquierda */
+    
+    padding-left: 7%;
+    color: rgb(247, 241, 241);
+}
+
+.header-title {
+    font-size: 6.4rem;
+    font-weight: bold;
+    margin-top: 180px;
+    margin-bottom: 0;
+    line-height: 1;               /* Ajusta el espacio entre líneas */
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5); /* Sombra para legibilidad */
+}
+.header-title {
+    display: flex; /* Para que los spans se alineen correctamente */
+    flex-wrap: wrap;
+}
+
+.header-title span {
+    display: inline-block;
+    opacity: 0; /* Empiezan invisibles */
+    animation: entradaLetra 0.5s ease-out forwards;
+}
+
+/* Retraso para cada letra (puedes añadir más si tu nombre es más largo) */
+.header-title span:nth-child(1) { animation-delay: 0.1s; }
+.header-title span:nth-child(2) { animation-delay: 0.2s; }
+.header-title span:nth-child(3) { animation-delay: 0.3s; }
+.header-title span:nth-child(4) { animation-delay: 0.4s; }
+.header-title span:nth-child(5) { animation-delay: 0.5s; }
+.header-title span:nth-child(6) { animation-delay: 0.5s; }
+.header-title span:nth-child(7) { animation-delay: 0.6s; } /* Espacio */
+.header-title span:nth-child(8) { animation-delay: 0.6s; }
+.header-title span:nth-child(9) { animation-delay: 0.6s; }
+.header-title span:nth-child(10) { animation-delay: 0.7s; }
+.header-title span:nth-child(11) { animation-delay: 0.7s; }
+.header-title span:nth-child(12) { animation-delay: 0.8s; }
+.header-title span:nth-child(13) { animation-delay: 0.8s; }
+
+
+
+.header-mono {
+    opacity: 0;               /* Invisible al inicio */
+    /* Espera 2.2s (para que termine el título) y luego cae */
+    animation: entradaSuave 1s ease-out 0.8s forwards;
+    margin-top: -5px;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5); /* Sombra para legibilidad */     
+}
+
+/* 2. Iconos Sociales (El contenedor flotante arriba) */
+.social-icons {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 30px;
+    background: #f8f8fa;
+    padding: 10px 25px;
+    border-radius: 50px; /* Estilo pill/cápsula */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    list-style: none;
+    z-index: 1000;
+}
+
+.social-link {
+    color: #333;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.social-link:hover {
+    color: #ff6600; /* Ese tono naranja que te identifica */
+}
+
+.brand-title strong {
+    font-weight: inherit;
+    color: inherit; 
+}
+
+.brand-subtitle strong {
+    font-weight: inherit;
+    color: inherit; 
+}
+
+
+/* 3. Navbar y el Logo Central */
+.navbar {
+    background: #720211;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky; /* Se pega al techo al scrolear */
+    top: 0;
+    z-index: 999;
+}
+
+.nav-container {
+    width: 85%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Para que el logo absoluto se base en esto */
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 75px;
+    width: 35%; /* Divide el espacio para dejar el centro libre */
+}
+
+.nav-menu:last-child {
+    justify-content: flex-end;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #f8f8fa;
+    font-weight: 600;
+    text-transform: none;
+    font-size: 1rem;
+    padding: 10px 15px; /* Crea una zona de clic más amplia */
+    transition: all 0.3s ease; /* Suaviza el cambio de color */
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #FF6600; /* El naranja de tu marca */
+    transform: translateY(-2px); /* Un pequeño salto hacia arriba */
+}
+
+.nav-link:active {
+    color: #D65D08; /* Un naranja más profundo para simular presión */
+    transform: translateY(0); /* Vuelve a su sitio al presionar */
+}
+
+/* El contenedor del Logo */
+.brand {
+    position: absolute;
+    left: 50%;
+    top: 0; /* Esto lo sitúa justo en la mitad horizontal de la navbar de 80px */
+    transform: translateX(-50%); /* Centra el contenedor exactamente */
+    z-index: 10;
+    text-align: center;
+    width: 150px; 
+    height: 150px;
+}
+
+/* La imagen circular */
+.brand-img {
+    width: 150px; 
+    height: 150px;
+    border-radius: 50%;
+    border: 10px solid #63020f; 
+    background: #720211;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Eliminamos position: relative y top: 0 que estaban estorbando */
+    display: block; 
+    margin-top: -65px;
+    transition: opacity 0.6s ease-in-out, width 0.4s, height 0.4s, margin-top 0.4s;
+}
+
+.logo-avatar {
+    opacity: 0;
+}
+
+.navbar-scrolled .brand-img {
+    margin-top: -65px; /* Mitad de 100: Mantiene la simetría perfecta */
+}
+
+/* --- CLASE QUE APLICAREMOS CON JS --- */
+.navbar-scrolled .logo-principal {
+    opacity: 0; /* Desaparece suavemente */
+}
+
+.navbar-scrolled .logo-avatar {
+    opacity: 1; /* Aparece suavemente */
+}
+
+/* --- ESTADO CUANDO LA NAVBAR TOCA EL TECHO --- */
+
+.navbar-scrolled {
+    /* Aquí eliges el color. Puede ser un gris muy oscuro o el naranja de tu marca */
+    background-color: #f8f8fa !important; /* Cambia a un tono oscuro elegante */
+    
+    /* Añadimos una sombra más fuerte para que resalte sobre el contenido */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    
+    transition: all 0.5s ease;
+}
+
+.navbar-scrolled .nav-link {
+    color: #ff6600;
+}
+
+.navbar-scrolled .nav-link:hover {
+    color: #666;
+}
+
+.navbar-scrolled .brand-img {
+    border-color: #f8f8fa; /* El mismo color que el fondo de la navbar para que se integre */
+    background-color: #666; /* Podemos poner el fondo naranja para que resalte tu avatar */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Una sombra más profunda */
+}
+
+/* Si quieres que el logo naranja (logo-avatar) se vea mejor sobre el fondo oscuro */
+.navbar-scrolled .logo-avatar {
+    /* Aquí podrías añadir un filtro si fuera necesario, 
+       pero al ser un cambio de imagen suave (fade), ya debería verse genial */
+    filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.2));
+}
+
+/* Ocultar texto del logo inicialmente */
+.brand-txt {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.5s;
+}
+
+/* Definimos la animación con Blur y movimiento */
+@keyframes entradaLetra {
+    from {
+        opacity: 0;
+        filter: blur(10px);
+        transform: translateX(-20px); /* Viene desde la izquierda */
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateX(0);
+    }
+}
+
+
+/* Animación para el Subtítulo (Caída) */
+@keyframes entradaSuave {
+    from {
+        opacity: 0;
+        transform: translateY(-50px); /* Empieza 50px más arriba */
+        filter: blur(5px);           /* Un toque de desenfoque para estilo */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);    /* Termina en su posición original */
+        filter: blur(0);
+    }
+}
+
+.perfil-section {
+    height: 100vh; /* Ajusta la altura que desees para esta sección */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(141, 139, 139, 0)), url('imgs/perfil.png');
+    background-size: cover;
+    background-position: center;
+    
+    /* EL TRUCO PARA QUE SE QUEDE ESTÁTICA: */
+    background-attachment: fixed; 
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #f8f8fa;
+    padding: 10%;
+}
+
+.perfil-content h2 {
+    font-size: 2.4rem;
+    text-transform: none;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+    text-align: left;
+    color:#72023a;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.perfil-content h2:hover {
+    color:#f8f8fa;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.perfil-content p {
+    font-size: 1.2rem;
+    max-width: 400px;
+    margin: 0 auto;
+    font-weight: 300;
+    text-align: left;
+    line-height: 1.5;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.596), 0 0 20px rgba(255, 255, 255, 0.4);
+    margin-bottom: 25px;
+}
+
+.marca {
+    color: #ff8800; 
+}
+
+.verde {
+    color: #02ff38; 
+}
+
+.negrilla {
+    font-weight: 600 !important; 
+}
+
+.marca-negrilla {
+    color: #ff6600; 
+    font-weight: 600 !important; 
+}
+
+.link-ong {
+    color: #0ab5f8; 
+    text-decoration: none; 
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #0ab5f8; 
+}
+
+.marca-bis {
+    color: #72023a; 
+    font-weight: 600 !important;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4); 
+}
+
+.link-ong:hover {
+    color: white; 
+    border-bottom: 1px solid white; 
+    background-color: rgba(248, 110, 10, 0.1); 
+}
+
+.ticker-wrapper {
+    width: 100%;
+    overflow: hidden;
+    background-color: #72023a;
+    padding: 10px 0;
+    display: flex; /* Alinea los bloques uno tras otro */
+    position: relative; /* Asegura que la sombra se vea por encima de lo que viene abajo */
+    z-index: 5;         /* Le da prioridad visual */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+
+}
+
+.ticker-scroll {
+    display: flex;
+    width: max-content; /* Se ajusta al largo total de los nombres */
+    animation: scroll-infinito 50s linear infinite;
+}
+
+.ticker-item {
+    display: flex;
+}
+
+.ticker-item span {
+    font-size: 1.4rem;
+    font-weight: 200; /* Letra delgada como querías */
+    color: #f8f8fa;
+    padding: 0 40px; /* Espacio constante entre nombres */
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+/* LA ANIMACIÓN CLAVE */
+@keyframes scroll-infinito {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Solo movemos la mitad, donde empieza el bloque duplicado */
+    }
+}
+
+.acciones-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Asegura que la sección ocupe toda la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0;
+
+    /* CONFIGURACIÓN DEL FONDO PARALLAX */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.616), rgba(0, 0, 0, 0.219)), 
+                      url('imgs/acciones.jpg'); 
+    background-attachment: fixed; /* Esto es lo que lo deja estático */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    overflow: hidden; /* Evita que el carrusel rompa el diseño */
+}
+
+/* Posicionamos las flechas fuera del carrusel pero dentro de la sección */
+.swiper-button-next, 
+.swiper-button-prev {
+    position: absolute;
+    top: 50%; /* Centradas verticalmente */
+    transform: translateY(-50%);
+    z-index: 100; /* Siempre por encima de todo */
+    color: #ff8800 !important; /* Tu naranja de marca */
+}
+
+.swiper-button-prev { 
+    left: 16%; 
+}
+
+.swiper-button-next { 
+    right: 16%; 
+}
+
+
+/* Ajuste para que el título no se pegue al carrusel */
+.titulo-seccion {
+    font-size: 2.4rem;
+    text-transform: none;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-align: center;
+    color:#ff8800;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.8), 0 0 20px rgba(29, 23, 23, 0.404);
+}
+
+.titulo-seccion:hover {
+    color:#f8f8fa;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px; /* Tamaño tipo celular para las tarjetas */
+    height: 450px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Info que aparece sobre la foto */
+.slide-info {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    color: #f8f8fa;
+    padding: 20px;
+    width: 100%;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    opacity: 1; /* Visible por defecto */
+    transform: translateY(0);
+}
+
+.slide-info p {
+    padding-right: 25px; /* Crea un "colchón" para que la letra no toque el borde */
+    overflow: hidden;    /* Asegura que nada se salga del contenedor */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Opcional: limita a 3 líneas para que no tape toda la foto */
+    -webkit-box-orient: vertical;
+}
+
+.swiper-slide:hover .slide-info {
+    opacity: 0; /* Desaparece */
+    transform: translateY(20px); /* Un pequeño movimiento hacia abajo para dar elegancia */
+    pointer-events: none; /* Evita que el texto interfiera con el mouse mientras desaparece */
+}
+
+.swiper-pagination {
+    position: absolute;
+    bottom: 80px !important; /* Prueba con 60px o 80px hasta que queden donde te guste */
+    left: 50% !important;
+    transform: translateX(-50%);
+    z-index: 101 !important;
+    width: auto !important;
+    pointer-events: auto !important; /* Asegura que el clic siga funcionando */
+}
+
+/* Forzamos a que el punto activo siempre se vea */
+.swiper-pagination-bullet-active-main {
+    opacity: 1 !important;
+    scale: 1.2;
+}
+
+/* Personalizamos los puntos y flechas al naranja de Matheo Rincón */
+.swiper-pagination-bullet-active {
+    background: #ff8800 !important;
+}
+.swiper-button-next, .swiper-button-prev {
+    color: #ff8800 !important;
+}
+
+/* Permite que el contenedor de puntos crezca o se mueva según el JS */
+.swiper-pagination-lock {
+    display: none !important; /* Oculta la paginación si solo hay 1 slide */
+}
+
+.swiper-pagination-bullet {
+    transition: all 0.3s ease-in-out; /* Suaviza el cambio de tamaño tipo Instagram */
+    background: #f8f8fa !important;   /* Puntos blancos por defecto */
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #ff8800 !important;   /* El punto activo en tu naranja de marca */
+}
+
+.slide-link {
+    text-decoration: none; /* Quita subrayados azules */
+    display: block;        /* Hace que el enlace ocupe todo el slide */
+    width: 100%;
+    height: 100%;
+    color: inherit;        /* Mantiene los colores blanco/naranja que ya definimos */
+}
+
+/* Efecto visual opcional al pulsar */
+.slide-link:active {
+    transform: scale(0.98); /* La foto se hunde un poquito al tocarla */
+    transition: transform 0.1s;
+}
+
+.propuestas-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* CONFIGURACIÓN PARALLAX */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.322), rgba(0, 0, 0, 0.8)), 
+                      url('imgs/propuesta.jpg'); /* Usa una foto técnica o de ciudad */
+    background-attachment: fixed; /* El "ancla" del parallax */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    overflow: hidden;
+}
+
+.propuestas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas para PC */
+    grid-auto-rows: 200px; /* Altura base de cada cuadro */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.bento-vivienda {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: transparent !important;
+    /* Graduamos la oscuridad: arriba más claro, abajo más oscuro para el texto */
+    background-image: linear-gradient(rgba(100, 99, 99, 0), rgba(0, 0, 0, 0.8)), url('imgs/vivienda.png') !important; 
+    background-size: cover !important;     /* Fuerza a que la imagen quepa */
+    background-position: center !important;  /* Centra el punto focal */
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
+    border: none; /* Se ve más sofisticado sin el borde si tiene imagen */
+    transition: background-image 0.4s ease;
+    display: flex !important;
+}
+
+/* Efecto al pasar el mouse */
+.bento-vivienda:hover {
+    background-image: linear-gradient(rgba(248, 110, 10, 0.3), rgba(0, 0, 0, 0.9)), 
+                      url('imgs/vivienda.png');
+    transform: scale(1.02);
+}
+
+/* Aseguramos que el contenido esté al frente */
+.bento-vivienda .bento-content {
+    position: relative;
+    z-index: 5;
+}
+
+/* Estilo Base de las Tarjetas */
+.bento-item {
+    border-radius: 25px;
+    padding: 30px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bento-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(248, 110, 10, 0.3); /* Brillo naranja de tu marca */
+    border-color: #F86E0A;
+}
+
+/* Tamaños Específicos */
+.bento-grande { grid-column: span 2; grid-row: span 2; } /* Cuadro más grande */
+.bento-imagen { grid-column: span 1; grid-row: span 2; }
+
+/* Colores Sofisticados (Basados en la imagen) */
+.bento-celeste { background: rgba(173, 216, 230, 0.15); backdrop-filter: blur(10px); }
+.bento-crema { background-image: linear-gradient(rgba(0, 0, 0, 0.144), rgba(0,0,0,0.8)), url('imgs/propuesta1a.jpg') !important;
+    background-size: cover !important;
+    background-color: transparent !important; /* Quita el color crema de fondo */
+    backdrop-filter: none !important;        /* Quita el borroso para que la foto sea nítida */
+ }
+.bento-morado {
+    background: rgba(79, 9, 107, 0.397); backdrop-filter: blur(10px);
+    display: flex;             /* Activamos el modo flexible */
+    flex-direction: column;    /* Alineamos los elementos uno bajo otro */
+    justify-content: center;   /* Centrado vertical */
+    align-items: center;       /* Centrado horizontal */
+    text-align: center;   
+    box-sizing: border-box;     /* Centra las líneas de texto */
+    padding: 10px;             /* Espacio interno para que el texto no toque los bordes */
+    height: 100%;
+    margin:0;
+    align-self: stretch;
+}
+
+.bento-morado .bento-texto {
+    margin: 0;                 /* Eliminamos márgenes que puedan desplazarlo */
+    font-size: 0.95rem;        /* Un tamaño ligeramente menor para que encaje mejor */
+    line-height: 1.2;          /* Mejora la legibilidad en espacios reducidos */
+}
+
+.bento-morado .bento-icon {
+    font-size: 2rem;           /* Ajusta el tamaño del icono/símbolo */
+    margin-bottom: 5px;       /* Separa el icono del texto */
+}
+.bento-celeste-claro { background: rgba(224, 255, 255, 0.15); backdrop-filter: blur(10px); }
+
+/* Tipografía Interna */
+.bento-numero {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0;
+    display: block;
+    color:#f8f8fa
+}
+
+.bento-texto {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-top: 10px;
+    color:#f8f8fa
+}
+
+.bento-video {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: px;
+    overflow: hidden; /* Mantiene los bordes redondeados del cajón */
+    padding: 0 !important; /* El video debe llegar hasta el borde */
+    overflow: hidden;
+    grid-column: span 1; /* Asegura que ocupe 1 columna */
+    grid-row: span 2;    /* Asegura que ocupe 2 filas hacia abajo */
+}
+
+.bento-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene la proporción 9:16 recortando los excesos */
+    z-index: 1;
+}
+
+/* Oscurecemos el video para que el texto del overlay resalte */
+.bento-video::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    z-index: 2;
+}
+
+.bento-video .bento-overlay {
+    position: relative;
+    z-index: 3; /* El texto siempre por encima de la sombra y el video */
+    padding: 20px;
+}
+
+.footer-contacto {
+    background-color: #1a1a1a;
+    color: #f8f8fa;
+    padding: 60px 0 30px 0;
+    border-top: 1px solid rgba(248, 110, 10, 0.3); /* Línea naranja sutil */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    gap: 40px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-column h3 {
+    color: #FF6600; /* Tu color de marca */
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.footer-social-icons {
+    display: flex;
+    flex-direction: column; /* Los pone uno debajo del otro */
+    gap: 12px;
+}
+
+/* Solo afectamos los links que viven DENTRO del footer */
+.footer-contacto .footer-link, 
+.footer-contacto .footer-social-link {
+    display: flex;
+    align-items: center;
+    color: #f8f8fa !important;
+    text-decoration: none !important;
+    margin-bottom: 12px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+/* Solo afectamos el hover dentro del footer */
+.footer-contacto .footer-link:hover, 
+.footer-contacto .footer-social-link:hover {
+    opacity: 1;
+    color: #ff6600 !important;
+    padding-left: 5px;
+}
+
+/* Solo el icono blanco en el hover del footer */
+.footer-contacto .footer-social-link:hover i {
+    color: #f8f8f8 !important;
+}
+
+.footer-social-link {
+    display: flex !important;
+    align-items: center;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.footer-social-link i {
+    margin-right: 12px;
+    color: #Ff6000; /* Tu naranja de marca */
+    width: 20px;
+    text-align: center;
+}
+
+.footer-logo {
+    max-width: 180px;
+    height: auto;          /* Mantiene la proporción para que no se vea estirado */
+    display: block;        /* Evita espacios extra debajo de la imagen */
+    margin-bottom: 15px;   /* Separa el logo del texto de copyright */
+}
+
+.footer-logo-link {
+    display: inline-block; /* Permite que el enlace rodee bien a la imagen */
+    text-decoration: none !important; /* Asegura que no aparezcan líneas raras */
+    transition: transform 0.3s ease;
+}
+
+.footer-logo-link:hover {
+    transform: translateY(-5px); /* El logo sube sutilmente al pasar el mouse */
+}
+
+
+.footer-link i {
+    margin-right: 10px; /* Separa el ícono del texto */
+    color: #ff6600;    /* Color naranja de Asimetría Cero */
+    font-size: 1.1rem;  /* Ajusta el tamaño para que sea armónico */
+    width: 20px;       /* Ancho fijo para que el texto de abajo se alinee perfecto */
+    text-align: center;
+}
+
+/* Opcional: que el ícono también cambie al pasar el mouse */
+.footer-link:hover i {
+    color: #f8f8fa !important;
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
+.footer-copyright {
+    width: 100%;             /* Ocupa todo el ancho disponible */
+    text-align: center;      /* Centra el texto horizontalmente */
+    padding: 20px 0;         /* Espacio arriba y abajo */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Línea divisoria sutil */
+    margin-top: 30px;        /* Separa el copyright de las columnas */
+}
+
+.footer-copyright p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #ffffff;
+    opacity: 0.7;            /* Un tono más discreto para el copyright */
+}
+
+
+/* Estilos base para el botón */
+.menu-toggle {
+    display: none; /* Escondido en PC */
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+
+
+    .nav-link {
+        padding: 15px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Responsivo para celulares */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-link:hover, .social-link:hover {
+        padding-left: 0;
+    }
+}
+
+
+
+/* Adaptación para Celulares */
+@media (max-width: 992px) {
+    .propuestas-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: auto;
+    }
+    .bento-grande { grid-column: span 2; }
+}
+
+@media (max-width: 600px) {
+    .propuestas-grid {
+        grid-template-columns: 1fr;
+    }
+    .bento-grande, .bento-imagen { grid-column: span 1; }
+}
+
+/* Estilos para Celulares */
+@media (max-width: 768px) {
+    .header {
+        /* Reducimos el alto en móvil para que la navbar sea visible rápido */
+        height: 80vh; /* Bajamos un poco el alto total para que la navbar suba */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; 
+        padding-top: 20vh; /* Bajamos el texto un poquito del techo */
+    }
+
+    .header-content {
+        /* Este es el truco maestro */
+        margin-bottom: auto; 
+    }
+
+    .header-title {
+        /* Bajamos el tamaño de "Matheo Rincón" */
+        font-size: 2.5rem !important; 
+        line-height: 1.1;
+    }
+
+    .header-mono {
+        /* Bajamos el tamaño de "Candidato al Senado" */
+        font-size: 1rem !important;
+        letter-spacing: 2px; /* Reducimos un poco el espacio entre letras */
+    }
+    .swiper-button-prev { left: 10px; }
+    .swiper-button-next { right: 10px; }
+}
+
+@media (max-width: 768px) {
+    /* 1. LA NAVBAR: Forzamos que pegue al techo */
+    .navbar {
+
+        height: 60px; 
+        display: block !important; /* Quitamos flex para que no centre todo en 60px */
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1000;
+        overflow: visible !important; /* PERMITE QUE EL MENÚ SE VEA AFUERA */
+    }
+
+    .navbar-scrolled .menu-toggle i {
+        color: #ff6600 !important; /* El naranja de la campaña */
+        transition: color 0.3s ease; /* Para que el cambio sea suave */
+    }
+
+    /* 2. EL CÍRCULO: Posicionamiento por porcentaje */
+    .brand {
+        position: fixed !important; /* Se desprende de la barra y flota en el cristal del cel */
+        bottom: -20% !important;               /* Distancia desde abajo */
+        right: -15%;                /* Distancia desde la derecha */
+        left: auto;                 /* Cancelamos el left: 75% anterior */
+        top: auto !important;                  /* Cancelamos el top: 50% anterior */
+        transform: none;            /* Quitamos los ajustes de centrado */
+        z-index: 5000;              /* Lo ponemos por encima de TODO */
+        display: flex;
+    }
+
+/* Ajustamos el tamaño para que sea un botón cómodo pero no gigante */
+    .brand-img, .logo-avatar {
+        height: 80px; /* Un tamaño de 80px a 90px es ideal para el pulgar */
+        border: 10%;
+        width: auto;
+        filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.4)); /* Sombra más fuerte para que "vuele" */
+    }
+
+    /* 3. LAS TRES RAYAS: Centradas y proporcionales */
+    .menu-toggle {
+        display: block !important;
+        position: absolute;
+        left: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        color: white;
+        font-size: 1.6rem;
+        z-index: 1001;
+    }
+
+    /* 4. MENÚ DESPLEGABLE: Ajustado a los 60px */
+    .nav-menu {
+        display: none; /* Escondidas por defecto */
+        width: 100%;
+        background-color: #f8f8fa;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .nav-container {
+        display: flex;
+        flex-direction: column; /* Apila las dos listas una bajo la otra */
+        width: 100%;
+        position: relative;
+    }
+    
+    .nav-menu.active {
+        display: block !important;
+    }
+
+    .nav-menu.active:first-of-type {
+        display: block !important;
+        margin-top: 60px; 
+    }
+
+    .nav-item {
+        text-align: center;
+        padding: 15px 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.301);
+    }
+
+    .brand-txt { display: none; }
+
+    .perfil-section {
+        padding-top: 85px !important; /* Crea el hueco para la barra de 60px + margen */
+        height: auto !important;      /* ¡CLAVE! Permite que la caja crezca con el texto */
+        min-height: 100vh;           /* Mínimo toda la pantalla, pero sin máximo */
+        display: flex;
+        flex-direction: column;
+        overflow: visible !important; /* Para que nada se corte si el texto es largo */
+    }
+
+    /* 2. EL TÍTULO: Lo bajamos para que no pelee con la barra */
+    .perfil-section h2 {
+        margin-top: 10px !important;
+        margin-bottom: 20px;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* 3. EL CONTENEDOR DE TEXTO: Que use todo el ancho disponible */
+    .perfil-content {
+        padding: 0 20px 40px 20px; /* Margen a los lados y abajo */
+        width: 100%;
+    }
+
+    .bento-video {
+        width: 100% !important;
+        /* Esto obliga al contenedor a tener altura basada en su ancho */
+        aspect-ratio: 16 / 9 !important; 
+        height: auto !important;
+        min-height: 250px; /* Seguridad extra para que nunca se vea "chato" */
+        border-radius: 20px; /* Para mantener la estética de bordes redondeados del bento */
+        overflow: hidden;
+    }
+
+    /* Si tienes un video o iframe adentro, asegúrate que llene el espacio */
+    .bento-video video, 
+    .bento-video iframe {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* El video llena el cuadro sin dejar franjas negras */
+    }
+
+    .header {
+        /* 1. Cambiamos la imagen a una versión optimizada para móvil */
+        background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('imgs/header-movil.png') !important;
+
+        /* 2. RECOMENDACIÓN: Quitamos el parallax en celular */
+        /* 'fixed' suele fallar en móviles; 'scroll' es más fluido */
+        background-attachment: scroll !important;
+
+        /* 3. Ajustamos la posición para que la cara del candidato se vea bien */
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .perfil-section {
+        /* El primer valor es horizontal (X), el segundo es vertical (Y) */
+        /* Prueba con porcentajes mayores al 50% para mover la imagen a la izquierda */
+        background-position: 70% center !important;
+    }
+
+    .bento-vivienda {
+        /* Ancla el lado derecho de la foto al lado derecho del bento */
+        background-position: right center !important;
+
+}
