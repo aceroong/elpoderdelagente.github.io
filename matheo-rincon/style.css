@@ -945,7 +945,7 @@ body, html {
     /* 2. EL CÍRCULO: Posicionamiento por porcentaje */
     .brand {
         position: fixed !important; /* Se desprende de la barra y flota en el cristal del cel */
-        bottom: -20% !important;               /* Distancia desde abajo */
+        bottom: -5% !important;               /* Distancia desde abajo */
         right: -15%;                /* Distancia desde la derecha */
         left: auto;                 /* Cancelamos el left: 75% anterior */
         top: auto !important;                  /* Cancelamos el top: 50% anterior */
@@ -1074,3 +1074,4 @@ body, html {
 
     }
 }
+
